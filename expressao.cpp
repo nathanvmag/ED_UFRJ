@@ -54,8 +54,12 @@ int main ()
     //operadores= alocar(operadores,arraysize);
     int resultado=0;
     while (!feof(stdin) ) {
-    char palavra[25];
-    if ( scanf("%s", palavra) == 1 ) {
+    char* palavra = (char*) malloc(sizeof(char)*1);
+	char leitura;
+    if ( scanf("%c", &leitura) == 1 &&leitura!=' '&&leitura!='\n') {
+		palavra[0]=leitura;
+		palavra[1]='\0';
+		//printf("leu %s\n",palavra);
         if(strcmp(palavra,")")==0)
         {
            // printf("Achou um )\n");
@@ -97,13 +101,15 @@ int main ()
                    // printf("resultado %s\n", temp);
               
                 //}
-
+		
         }else
         adiciona(operadores,topo,palavra,arraysize);
+		free(palavra);
+
     }
 }
 
-    printf("Resultado %.2f",atof(desempilha(operadores,topo))); 
+    printf("%.0f",atof(desempilha(operadores,topo))); 
 
 
     return 0;
